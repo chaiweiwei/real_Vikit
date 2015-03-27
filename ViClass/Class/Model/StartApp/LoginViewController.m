@@ -12,6 +12,7 @@
 #import "MyInfoViewController.h"
 #import "NewsTabViewController.h"
 #import "RegisterViewController.h"
+#import "TimeDao.h"
 
 @interface LoginViewController()
 {
@@ -146,7 +147,6 @@
             UserBean *user=(UserBean *)result.obj;
             if (user) {
                 
-
                 NSUserDefaults *config=[NSUserDefaults standardUserDefaults];
                 [config setObject:user.uid forKey:kUidKey];
                 [config setObject:user.sessionKey forKey:kSessionIdKey];

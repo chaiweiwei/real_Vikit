@@ -353,17 +353,8 @@
             break;
         case 0x0011:
         {
-            NSUserDefaults *config=[NSUserDefaults standardUserDefaults];
             BasicsHttpClient *httpClient=[BasicsHttpClient httpClientWithDelegate:self];
             [httpClient logout];
-            
-            [config setObject:@"" forKey:kUidKey];
-            [config setInteger:0 forKey:KUserStatus];
-            [config setObject:@"" forKey:kSessionIdKey];
-            [config setObject:@"" forKey:kUserNameKey];
-            [config setObject:@"" forKey:KUserInfoExtra];
-            [config synchronize];
-
         }
             break;
         default:
@@ -459,15 +450,32 @@
 
 -(void)dataLoadDone:(ALDHttpClient *)httpClient requestPath:(HttpRequestPath)requestPath withCode:(NSInteger)code withObj:(ALDResult *)result
 {
-    if(requestPath==HttpRequestPathForUserInfo){
+    if(requestPath == HttpRequestPathForLastTime){
+        
+        HttpClient *httpClient = [HttpClient httpClientWithDelegate:self];
+        [httpClient getUnReadUserNewsCount];
+        
+    }
+    else if(requestPath==HttpRequestPathForUserInfo){
         if(code==KOK){
             id obj=result.obj;
             if([obj isKindOfClass:[UserBean class]]){
                 
                 _ub=(UserBean *)obj;
+//                HttpClient *httpClient = [HttpClient httpClientWithDelegate:self];
+//                [httpClient getUnReadUserNewsCount];
+                
+                NSDictionary *exera = _ub.extra;
+                
+                if(![[exera objectForKey:@"thelast"] isEqualToString:@""])
+                {
+                    TimeDao *timeDao = [[TimeDao alloc] init];
+                    [timeDao addTimeData:[exera objectForKey:@"thelast"]];
+                }
+                
                 HttpClient *httpClient = [HttpClient httpClientWithDelegate:self];
-                [httpClient getUnReadUserNewsCount];
-                //[self initUI];
+                [httpClient updateLastTime];
+
             }
         }
         else
@@ -503,6 +511,19 @@
             controller.title=ALDLocalizedString(@"User login", @"用户登录");
             UINavigationController *navController=[[UINavigationController alloc] initWithRootViewController:controller];
             win.rootViewController=navController;
+            
+            [win makeKeyAndVisible];
+            
+            NSUserDefaults *config=[NSUserDefaults standardUserDefaults];
+            [config setObject:@"" forKey:kUidKey];
+            [config setInteger:0 forKey:KUserStatus];
+            [config setObject:@"" forKey:kSessionIdKey];
+            [config setObject:@"" forKey:kUserNameKey];
+            [config setObject:@"" forKey:KUserInfoExtra];
+            [config synchronize];
+        }
+        else{
+            [ALDUtils showToast:@"退出失败，请重试"];
         }
     }
     [ALDUtils removeWaitingView:self.view];
