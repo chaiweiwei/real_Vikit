@@ -145,6 +145,9 @@
     
     //背景
     ALDImageView *bgImgView = [[ALDImageView alloc] initWithFrame:CGRectMake(0, 0, viewWidth, 150)];
+    bgImgView.contentMode = UIViewContentModeScaleAspectFill;
+    bgImgView.clipsToBounds = YES;
+
     bgImgView.defaultImage = [UIImage imageNamed:@"bg_my"];
     bgImgView.imageUrl = _firstBean.logo;
     bgImgView.userInteractionEnabled = YES;
@@ -284,6 +287,9 @@
         [cell addSubview:grayView];
                
         ALDImageView *icon = [[ALDImageView alloc] initWithFrame:CGRectMake(0, grayView.bottom, viewWidth, 80)];
+        icon.contentMode = UIViewContentModeScaleAspectFill;
+        icon.clipsToBounds = YES;
+        
         if (viewWidth == 414) {
             icon.frame = CGRectMake(0, grayView.bottom, viewWidth, 312/3.f);
         }
@@ -424,6 +430,10 @@
         btn.enabled = YES;
     }
     ALDImageView *icon = (ALDImageView *)[cell viewWithTag:0x0010];
+    icon.contentMode = UIViewContentModeScaleAspectFill;
+    icon.clipsToBounds = YES;
+    
+
     NSInteger index = indexPath.row%4;
     if (index == 0) {
         icon.image = [UIImage imageNamed:@"bg_list01"];

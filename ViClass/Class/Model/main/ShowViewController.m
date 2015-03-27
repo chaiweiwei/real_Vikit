@@ -83,7 +83,9 @@
     self.movieURL=text;
     UIImage *firstFrameImg=nil; //第一帧图片
     ALDImageView *imgView = (ALDImageView *)[self.HeadView viewWithTag:0x1001];
-    
+    imgView.contentMode = UIViewContentModeScaleAspectFill;
+    imgView.clipsToBounds = YES;
+
     if(text && ![text isEqualToString:@""]){
         NSURL *url=[NSURL URLWithString:text];
         firstFrameImg=[self thumbnailImageForVideo:url atTime:0];

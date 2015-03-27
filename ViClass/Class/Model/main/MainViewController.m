@@ -177,6 +177,9 @@
             
             //图片
             ALDImageView *bookPic = [[ALDImageView alloc] initWithFrame:CGRectMake(0, 0, viewWidth, 150)];
+            bookPic.contentMode = UIViewContentModeScaleAspectFill;
+            bookPic.clipsToBounds = YES;
+            
             bookPic.tag = 0x0011;
             bookPic.fitImageToSize = NO;
             bookPic.autoResize = NO;
@@ -235,6 +238,9 @@
         
         //用户头像
         ALDImageView *img = (ALDImageView *)[cell viewWithTag:0x0011];
+        img.contentMode = UIViewContentModeScaleAspectFill;
+        img.clipsToBounds = YES;
+
         text = bean.logo;
         text=text==nil?@"":text;
         if([text isEqualToString:@""]) {
@@ -260,6 +266,9 @@
                 
                 //图片
                 ALDImageView *bookPic = [[ALDImageView alloc] initWithFrame:CGRectMake(x, 0, width, kTableRowHeight - 2)];
+                bookPic.contentMode = UIViewContentModeScaleAspectFill;
+                bookPic.clipsToBounds = YES;
+                
                 bookPic.tag = tagOffSet2+i+1;
                 bookPic.fitImageToSize = NO;
                 bookPic.autoResize = NO;
@@ -311,6 +320,9 @@
                 
                 //图片
                 ALDImageView *img = (ALDImageView *)[cell viewWithTag:tagOffSet2+i+1];
+                img.contentMode = UIViewContentModeScaleAspectFill;
+                img.clipsToBounds = YES;
+                
                 text = bean.logo;
                 text=text==nil?@"":text;
                 if([text isEqualToString:@""]) {
@@ -328,6 +340,9 @@
                 
                 //用户头像
                 ALDImageView *img = (ALDImageView *)[cell viewWithTag:tagOffSet2+i+1];
+                img.contentMode = UIViewContentModeScaleAspectFill;
+                img.clipsToBounds = YES;
+
                 img.image = nil;
                 img.hidden = YES;
                 
