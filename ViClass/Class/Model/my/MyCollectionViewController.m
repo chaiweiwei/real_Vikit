@@ -300,14 +300,17 @@
 {
     if(_moviePlayer.playbackState==MPMoviePlaybackStatePlaying){
         _moviePlayer.view.hidden = NO;
-    }
+    }else
+        _moviePlayer.controlStyle=MPMovieControlStyleEmbedded;
 }
 //done
 -(void)movieFinish:(NSNotification *)notification
 {
     _moviePlayer.controlStyle=MPMovieControlStyleNone;
     _moviePlayer.view.hidden = YES;
+    [_moviePlayer stop];
 }
+
 -(BOOL)shouldAutorotate{
     return YES;
 }

@@ -103,7 +103,7 @@
 //        [select addTarget:select action:@selector(cellClicked:) forControlEvents:UIControlStateNormal];
 //        [cell addSubview:select];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, CGRectGetWidth(self.view.frame)-35, 44)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, CGRectGetWidth(self.view.frame)-45, 44)];
         label.textColor = KWordBlackColor;
         label.backgroundColor = [UIColor clearColor];
         label.font = kFontSize32px;
@@ -129,7 +129,7 @@
     QuestionBean *qb = self.tableData[self.num];
     OptionBean *ob = qb.options[indexPath.row];
     
-    CGSize size = [ALDUtils captureTextSizeWithText:ob.name textWidth:CGRectGetWidth(self.view.frame)-35 font:kFontSize32px];
+    CGSize size = [ALDUtils captureTextSizeWithText:ob.name textWidth:CGRectGetWidth(self.view.frame)-45 font:kFontSize32px];
     
     UILabel *label = (UILabel *)[cell viewWithTag:0x11];
     label.text = ob.name;
