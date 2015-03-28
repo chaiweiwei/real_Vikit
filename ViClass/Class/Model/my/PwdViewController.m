@@ -40,6 +40,7 @@
     [self.view addSubview:line];
     
     self.oldPass = [self createText:CGRectMake(0, line.bottom, viewWidth, 44) title1:@"原密码" title2:@"请输入原密码"];
+    self.oldPass.secureTextEntry = YES;
     
     [self.view addSubview:self.oldPass];
     
