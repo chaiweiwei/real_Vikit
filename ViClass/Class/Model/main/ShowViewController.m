@@ -194,25 +194,24 @@
         NSURL *url=[NSURL URLWithString:self.movieURL];
         [_moviePlayer setContentURL:url];
     }
-    [_moviePlayer.view setFrame:CGRectMake(0, 0, viewWidth, 160.0f)];
+    [_moviePlayer.view setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 160.0f)];
     _moviePlayer.shouldAutoplay=NO;
     _moviePlayer.repeatMode = MPMovieRepeatModeOne;
     _moviePlayer.view.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [HeadView addSubview:_moviePlayer.view];
     
     //播放按钮
-    UIImage *playImg=nil;
+    UIImage *playImg=[UIImage imageNamed:@"icon_palySmall"];
     CGFloat playHeigh=50.0f;
     ALDButton *btn=[ALDButton buttonWithType:UIButtonTypeCustom];
     btn.frame=CGRectMake((viewWidth-playHeigh)/2, (160-playHeigh)/2, playHeigh, playHeigh);
     
     ALDImageView *imgView=[[ALDImageView alloc] initWithFrame:CGRectMake(0, 0, viewWidth, 160.0f)];
     imgView.tag=0x1001;
-    playImg=[UIImage imageNamed:@"icon_palySmall"];
     imgView.defaultImage=[UIImage imageNamed:@"default_adver"];
     imgView.imageUrl=_cbean.logo;
-    playImg=[UIImage imageNamed:@"icon_palySmall"];
     
+
 //    if(text && ![text isEqualToString:@""]){
 //            NSURL *url=[NSURL URLWithString:text];
 //            firstFrameImg=[self thumbnailImageForVideo:url atTime:0];
@@ -524,12 +523,12 @@
                     
                     _moviePlayer.contentURL=url;
                     [_moviePlayer play];
-                    
-                    UIImageView *imgView=(UIImageView *)[self.HeadView viewWithTag:0x1001];
-                    if(imgView){
-                        [imgView removeFromSuperview];
-                        imgView=nil;
-                    }
+//                    
+//                    UIImageView *imgView=(UIImageView *)[self.HeadView viewWithTag:0x1001];
+//                    if(imgView){
+//                        [imgView removeFromSuperview];
+//                        imgView=nil;
+//                    }
                     _moviePlayer.controlStyle=MPMovieControlStyleFullscreen;
                     [_moviePlayer setFullscreen:YES animated:YES];
                     
@@ -581,11 +580,11 @@
                             break;
                     }
                     
-                    UIImageView *imgView=(UIImageView *)[self.HeadView viewWithTag:0x1001];
-                    if(imgView){
-                        [imgView removeFromSuperview];
-                        imgView=nil;
-                    }
+//                    UIImageView *imgView=(UIImageView *)[self.HeadView viewWithTag:0x1001];
+//                    if(imgView){
+//                        [imgView removeFromSuperview];
+//                        imgView=nil;
+//                    }
                     _moviePlayer.controlStyle=MPMovieControlStyleFullscreen;
                     [_moviePlayer setFullscreen:YES animated:YES];
                     
@@ -635,11 +634,16 @@
     if(_moviePlayer.playbackState==MPMoviePlaybackStatePlaying){
         self.playBtn.hidden=YES;
     }
+    else{
+        self.playBtn.hidden = NO;
+        _moviePlayer.controlStyle=MPMovieControlStyleEmbedded;
+    }
 }
 //done
 -(void)movieFinish:(NSNotification *)notification
 {
-    _moviePlayer.controlStyle=MPMovieControlStyleNone;
+    _moviePlayer.controlStyle=MPMovieControlStyleEmbedded;
+    [_moviePlayer stop];
     self.playBtn.hidden=NO;
 }
 -(BOOL)shouldAutorotate{
