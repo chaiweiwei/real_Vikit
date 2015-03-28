@@ -1299,7 +1299,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "692"
             endingLineNumber = "692"
-            landmarkName = "-thumbnailImageForVideo:atTime:"
+            landmarkName = "-reachabilityChanged:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1363,7 +1363,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "858"
             endingLineNumber = "858"
-            landmarkName = "-headerRereshing"
+            landmarkName = "-setupRefresh"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1379,7 +1379,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "862"
             endingLineNumber = "862"
-            landmarkName = "-footerRereshing"
+            landmarkName = "-headerRereshing"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1395,7 +1395,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "867"
             endingLineNumber = "867"
-            landmarkName = "-refrashClick"
+            landmarkName = "-footerRereshing"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
